@@ -16,11 +16,10 @@ Step 4: Runs a PID Simulation with the three sets of tuning parameters against t
 ![Step1](https://user-images.githubusercontent.com/92536730/148578368-5b86cdeb-3bce-469c-8304-ee2eb0b81783.JPG)
 
 
-![Step2](https://user-images.githubusercontent.com/92536730/148579011-145fefa0-05c1-46ff-8edf-13a28962557d.jpg)
+![Step2](https://user-images.githubusercontent.com/92536730/148644015-785abf6a-2961-4181-a32d-e776b3940ff2.jpg)
 
 
-![step3](https://user-images.githubusercontent.com/92536730/148579023-ddfcec74-3e3e-46ef-9273-46053aea091f.JPG)
+![Step3](https://user-images.githubusercontent.com/92536730/148644018-53b9a6e0-ceda-466b-88ee-265f975caca8.JPG)
 
 
-![Step4](https://user-images.githubusercontent.com/92536730/148579043-30f1a9dc-c00f-4977-b847-dea3f477d5cf.JPG)
-
+![Step4](https://user-images.githubusercontent.com/92536730/148644020-0cf9129d-d142-44a4-95f8-52f248dca1cf.JPG)
