@@ -41,7 +41,6 @@ class fine_model(object):
         t=df['PV'].index.values
 
         #Model Starting Point
-        #X= K,tau,DeadTime
         ModelValues = ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime
 
         #Every tenth datapoint 100ms to seconds
