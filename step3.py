@@ -76,9 +76,3 @@ class fine_model(object):
         finemodel=ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime
         tuner=ClassHolder.tunefinder()
         tuner.calc(finemodel) #tunefinder
-
-        
-
-
-
-
