@@ -30,7 +30,8 @@ class rough_model(object):
         df['PV'] = df[PV_cols[0]]
 
         #Find basic parameters
-        i_start=df[df['CV']!=0].first_valid_index()
+        i_start=df['CV'].idxmax()
+
         AvgAti=df['PV'].iloc[i_start:i_start+twosecwindow:1].mean(axis = 0)
         StartPV=df['PV'].iloc[i_start]
         InitCV=df['CV'].iloc[0]
@@ -88,7 +89,7 @@ class rough_model(object):
         plt.figure()
         plt.xlim(0,df['PV'].count()*0.11)
         plt.plot(plotpv, color="blue", linewidth=3, label='Actual Data')
-        plt.plot(t1+(i_start/10+(ClassHolder.process.mDeadTime)),(StartCV*y1)+AvgAti,color="red",linewidth=3,label='Model')
+        plt.plot(t1+(i_start/10+(ClassHolder.process.mDeadTime)),((StartCV-InitCV)*y1)+AvgAti,color="red",linewidth=3,label='Model')
         plt.plot(plotcv, color="green", linewidth=3, label='Step')
         plt.hlines(AvgAti, 0, i_start/10+ClassHolder.process.mDeadTime,colors='red', linestyles='solid',linewidth=3,label='')
         plt.ylabel('Engineering Units')
