@@ -10,6 +10,10 @@ Step 3: Trys to refine the model to minimize the error between the model and the
 
 Step 4: Runs a PID Simulation with the three sets of tuning parameters against the model 
 
+Note: Kd is turned down due to the effect the D-Term can have in a noisy system
+      Tuning methods are readily avaliable online 
+		
+
 ![Step0](https://user-images.githubusercontent.com/92536730/148578341-e6574036-1f94-4b2c-ad7a-79c428ca9a41.JPG)
 
 
