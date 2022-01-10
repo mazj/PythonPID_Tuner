@@ -96,7 +96,3 @@ class rough_model(object):
         plt.suptitle("Rough Model v Actual Data")
         plt.title(f"ModelGain: {round(ClassHolder.process.mGain,2)}   ModelTc: {round(ClassHolder.process.mTau,2)}   ModelDT: {round(ClassHolder.process.mDeadTime,2)}")
         plt.legend(loc='best')
-    
-        
-
-
