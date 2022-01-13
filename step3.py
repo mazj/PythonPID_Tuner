@@ -21,8 +21,8 @@ class fine_model(object):
 
         #Find Step Size
         CVStep=df['CV'].max()-df['CV'].min()
-        i=df['CV'].idxmax() #start of step
-        bias=df['PV'].iloc[int(i/2):i:1].mean(axis = 0)
+        indexofstart=int(df['CV'].idxmax()/10) #start of step
+        bias=df['PV'].iloc[int(indexofstart/2):indexofstart:1].mean(axis = 0)
 
         #Model
         def fopdt_func(t_fopdt, K=1, tau=1, deadtime=0):
@@ -38,32 +38,27 @@ class fine_model(object):
             return iae
 
         #Trim Timescale
-        t=df['PV'].index.values
+        actualPV=df['PV'].iloc[(indexofstart*10)-1::10].reset_index(drop=True)
+        actualCV=df['CV'].iloc[(indexofstart*10)-1::10].reset_index(drop=True)
+        t=actualPV.index.values
 
         #Model Starting Point
         ModelValues = ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime
 
-        #Every tenth datapoint 100ms to seconds
-        t=t[::10]
-
         #minimize difference between model and actual
-        Gain,Tau,DeadTime = minimize(err,ModelValues,args=(t, df['PV'].iloc[::10].reset_index(drop=True))).x
+        bounds = [(None, None), (0, None), (0,None)]
+        Gain,Tau,DeadTime = minimize(err,ModelValues,args=(t, actualPV.values),bounds=bounds, method='Nelder-Mead').x
 
         #Update holder class
-        ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime=Gain,Tau/10,(DeadTime-i)/10
+        ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime=Gain,Tau,DeadTime
 
         #Get data to plot new model 
-        ymodel=CVStep*fopdt_func(t/10,ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime)+bias
-        ymodel=ymodel[:-int(i/10):] #i= start of step
-
-        #Rescale
-        plotpv=df['PV'].iloc[i::10].reset_index(drop=True)
-        plotcv=df['CV'].iloc[i-1::10].reset_index(drop=True)
-
+        ymodel=CVStep*fopdt_func(t,ClassHolder.process.mGain,ClassHolder.process.mTau, ClassHolder.process.mDeadTime)+bias
+        
         #Plot
         plt.figure()
-        plt.plot(plotpv,color="blue",linewidth=3,label='Actual Data')
-        plt.plot(plotcv,color="green",linewidth=3,label='Step')
+        plt.plot(actualPV,color="blue",linewidth=3,label='Actual Data')
+        plt.plot(actualCV,color="green",linewidth=3,label='Step')
         plt.plot(ymodel,color="red",linewidth=3,label='Model')
         plt.xlabel('Seconds')
         plt.ylabel('Engineering Units')
