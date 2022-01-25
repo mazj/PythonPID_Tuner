@@ -1,3 +1,10 @@
+"""
+   
+   Updated and maintained by destination0b10unknown@gmail.com
+
+   Copyright 2022 destination2unknown
+   
+ """
 from scipy.integrate import odeint
 
 class process(object):

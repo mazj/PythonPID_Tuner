@@ -1,3 +1,10 @@
+"""
+   
+   Updated and maintained by destination0b10unknown@gmail.com
+
+   Copyright 2022 destination2unknown
+   
+ """
 import ClassHolder
 import numpy as np
 import matplotlib.pyplot as plt

@@ -1,3 +1,10 @@
+"""
+   
+   Updated and maintained by destination0b10unknown@gmail.com
+
+   Copyright 2022 destination2unknown
+   
+ """
 from tkinter import filedialog as fd
 import os
 
